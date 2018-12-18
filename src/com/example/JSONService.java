@@ -12,6 +12,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.jboss.resteasy.annotations.Form;
+import org.jboss.resteasy.annotations.providers.multipart.MultipartForm;
 
 
 
@@ -42,11 +43,10 @@ public class JSONService {
 	}
 	@POST
 	@Path("/postJson")
-	//@Consumes("multipart/form-data")
 	@Consumes(MediaType.MULTIPART_FORM_DATA)
-	public Response MultiPartJSON(@Form String is) {
+	public Response MultiPartJSON(@MultipartForm FileUploadForm form) {
 
-		String result = "Product created : " + is;
+		String result = "Product created : " + form;
 		System.out.println(result);
 		return Response.status(201).entity(result).build();
 		
